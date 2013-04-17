@@ -1,0 +1,35 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>{#improvedcode_dlg.code_title}</title>
+	<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+	<script type="text/javascript" src="../../tiny_mce_popup.js"></script>
+	<script type="text/javascript" src="js/ice.js"></script>
+	<link rel="stylesheet" href="js/codemirror/lib/codemirror.css">
+	<script type="text/javascript" src="js/codemirror/lib/codemirror.js"></script>
+	<script src="js/codemirror/mode/xml/xml.js"></script>
+	<script src="js/codemirror/mode/css/css.js"></script>
+	<script src="js/codemirror/mode/javascript/javascript.js"></script>
+	<script src="js/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+</head>
+<body onresize="ice.resizeInputs();" style="display:none; overflow:hidden;">
+	<form name="source" onsubmit="ice.saveContent();return false;" action="#">
+		<div style="float: left" class="title"><label for="htmlSource">{#improvedcode_dlg.code_title}</label></div>
+
+		<div id="optionsBar" style="float: right">
+			<input type="checkbox" name="highlighting" id="highlighting" onclick="ice.toggleHighlighting(this);" class="wordWrapCode" /><label for="highlighting">{#improvedcode_dlg.code_showHighlighting}</label>&nbsp;
+			<input type="checkbox" name="linenumbers" id="linenumbers" onclick="ice.toggleLineNumbers(this);" class="wordWrapCode" /><label for="linenumbers">{#improvedcode_dlg.code_showLineNumbers}</label>&nbsp;
+			<input type="checkbox" name="indented" id="indented" onclick="ice.toggleIndent(this);" class="wordWrapCode" /><label for="indented">{#improvedcode_dlg.code_indented}</label>&nbsp;
+			<input type="checkbox" name="wraped" id="wraped" onclick="ice.toggleWordWrap(this);" class="wordWrapCode" /><label for="wraped">{#improvedcode_dlg.code_wordwrap}</label>
+		</div>
+
+		<br style="clear: both" />
+
+		<textarea name="htmlSource" id="htmlSource" rows="15" cols="100" style="width: 100%; height: 100%; font-family: 'Courier New',Courier,monospace; font-size: 12px;" dir="ltr" wrap="off" class="mceFocus"></textarea>
+
+		<div class="mceActionPanel">
+			<input type="submit" role="button" name="insert" value="{#update}" id="insert" />
+			<input type="button" role="button" name="cancel" value="{#cancel}" onclick="tinyMCEPopup.close();" id="cancel" />
+		</div>
+	</form>
+</body>
+</html>
