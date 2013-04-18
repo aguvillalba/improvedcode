@@ -71,7 +71,7 @@ function ImprovedCodeEditor() {
 
 	this.toggleLineNumbers = function(elm) {
 		_cmSettings.cme.setOption("lineNumbers",elm.checked);
-	}
+	};
 
 	this.toggleWordWrap = function(elm) {
 		_cmSettings.cme.setOption("lineWrapping",elm.checked);
@@ -117,10 +117,9 @@ function ImprovedCodeEditor() {
 	function _loadCssTheme() {
 		if('' == _cmSettings.theme || 'default' == _cmSettings.theme) return null;
 
-
-		var fileref = document.createElement("link")
-		fileref.setAttribute("rel", "stylesheet")
-		fileref.setAttribute("type", "text/css")
+		var fileref = document.createElement("link");
+		fileref.setAttribute("rel", "stylesheet");
+		fileref.setAttribute("type", "text/css");
 		fileref.setAttribute("href", _cmSettings.themeUrl + _cmSettings.theme + ".css");
 		document.getElementsByTagName("head")[0].appendChild(fileref);	
 
@@ -136,7 +135,6 @@ function ImprovedCodeEditor() {
 
 		if(_fileExists(themeUrl + theme + ".css")) {
 			return theme;
-
 		} else {
 			return '';
 		}
@@ -155,7 +153,7 @@ function ImprovedCodeEditor() {
 			s.parentNode.replaceChild(n, s);
 			n.value = v;
 		}
-	}
+	};
 }
 
 var ice = new ImprovedCodeEditor();
