@@ -127,7 +127,7 @@ function ImprovedCodeEditor() {
 
 	function _resizeCodeMirror() {
 		var vp = tinyMCEPopup.dom.getViewPort(window);
-		_cmSettings.cme.setSize("100%",vp.h - 60);
+		_cmSettings.cme.setSize("100%",vp.h - 80);
 	};
 
 	function _sanitizeTheme(theme, themeUrl) {
