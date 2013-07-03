@@ -40,6 +40,10 @@
 
                     // Register the command so that it can be invoked by using tinyMCE.activeEditor.execCommand('mceExample');
                     ed.addCommand('mceImprovedCode', function() {
+							ed.focus();
+							ed.selection.collapse(true);
+							ed.selection.setContent('<span class="CuRCaRet" style="display:none">&#0;</span>');
+
                             ed.windowManager.open({
                                     file : url + '/improvedcode.htm',
 									width : 720,
@@ -92,7 +96,7 @@
                                 author : 	'Agustin Villalba',
                                 authorurl : 'http://www.agustinvillalba.com',
                                 infourl : 	'http://www.agustinvillalba.com/portfolio.html',
-                                version : 	'1.0'
+                                version : 	'1.1'
                         };
                 }
         });

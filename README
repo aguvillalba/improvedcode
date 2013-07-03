@@ -64,6 +64,10 @@ This plug-in includes the javascript library CodeMirror (codemirror.net) version
 CHANGE LOG
 =================
 
+Version 1.1
+
+	-	Added new feature. Set ImprovedCode cursor to same position as cursor was in TinyMCE
+
 Version 1.0.1		Added demo folder 20130422
 Version 1.0.0		First release 20130418
 

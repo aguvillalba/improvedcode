@@ -2,6 +2,7 @@ tinyMCEPopup.requireLangPack();
 
 function ImprovedCodeEditor() {
 	var _cmSettings = null;
+	var chr = 0;	// Unused utf-8 character, placeholder for cursor
 
 	this.init = function () {
 		tinyMCEPopup.resizeToInnerSize();
@@ -10,7 +11,12 @@ function ImprovedCodeEditor() {
 		if (tinymce.isGecko)
 			document.body.spellcheck = tinyMCEPopup.editor.getParam("gecko_spellcheck");
 
-		document.getElementById('htmlSource').value = tinyMCEPopup.editor.getContent({source_view : true});
+		// Set CodeMirror cursor to same position as cursor was in TinyMCE:
+		var editor_content = tinyMCEPopup.editor.getContent({source_view : true});
+		editor_content = editor_content.replace(/<span\s+class="CuRCaRet"([^>]*)>([^<]*)<\/span>/gm, String.fromCharCode(chr));
+		tinyMCEPopup.editor.dom.remove(tinyMCEPopup.editor.dom.select('.CuRCaRet'));
+
+		document.getElementById('htmlSource').value = editor_content;
 		_setWrap('soft');
 
 		this.resizeInputs();
@@ -33,6 +39,7 @@ function ImprovedCodeEditor() {
 		_cmSettings.cme = _initCodeMirror(_cmSettings);
 		_resizeCodeMirror();
 		if(_cmSettings.autoIndent) { _indentCode(true); }
+		
 	};
 
 	this.resizeInputs = function() {
@@ -100,6 +107,17 @@ function ImprovedCodeEditor() {
 
 	function _initCodeMirror(settings,theme) {
 		var textArea = document.getElementById("htmlSource");
+
+		CodeMirror.defineInitHook(function(inst){
+			// Move cursor to correct position:
+			inst.focus();
+			var cursor = inst.getSearchCursor(String.fromCharCode(chr), false);
+			if (cursor.findNext()) {
+				inst.setCursor(cursor.to());
+				cursor.replace('');
+			}
+		});
+
 		var myCodeMirror = CodeMirror.fromTextArea(
 								textArea
 								,{
