@@ -6,7 +6,7 @@
 * @license 	LGPL v3
 * @name		ImprovedCode
 * @package 	TinyMCE 3.4
-* @version: 1.0 April 2013
+* @version: 1.2.1 July 2013
 */
 
 (function() {
@@ -96,7 +96,7 @@
                                 author : 	'Agustin Villalba',
                                 authorurl : 'http://www.agustinvillalba.com',
                                 infourl : 	'http://www.agustinvillalba.com/portfolio.html',
-                                version : 	'1.1'
+                                version : 	'1.2.1'
                         };
                 }
         });

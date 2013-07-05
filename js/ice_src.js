@@ -3,6 +3,7 @@ tinyMCEPopup.requireLangPack();
 function ImprovedCodeEditor() {
 	var _cmSettings = null;
 	var chr = 0;	// Unused utf-8 character, placeholder for cursor
+	var initial_content = null;
 
 	this.init = function () {
 		tinyMCEPopup.resizeToInnerSize();
@@ -11,15 +12,15 @@ function ImprovedCodeEditor() {
 		if (tinymce.isGecko)
 			document.body.spellcheck = tinyMCEPopup.editor.getParam("gecko_spellcheck");
 
+		this.resizeInputs();
+
 		// Set CodeMirror cursor to same position as cursor was in TinyMCE:
 		var editor_content = tinyMCEPopup.editor.getContent({source_view : true});
 		editor_content = editor_content.replace(/<span\s+class="CuRCaRet"([^>]*)>([^<]*)<\/span>/gm, String.fromCharCode(chr));
 		tinyMCEPopup.editor.dom.remove(tinyMCEPopup.editor.dom.select('.CuRCaRet'));
-
 		document.getElementById('htmlSource').value = editor_content;
-		_setWrap('soft');
 
-		this.resizeInputs();
+		_setWrap('soft');
 
 		_cmSettings = tinyMCEPopup.getWindowArg("settings");
 		if(_cmSettings.optionsBar) {
@@ -37,11 +38,17 @@ function ImprovedCodeEditor() {
 		_cmSettings.theme = _sanitizeTheme(_cmSettings.theme, _cmSettings.themeUrl);
 		_loadCssTheme();
 		_cmSettings.cme = _initCodeMirror(_cmSettings);
+		initial_content = _cmSettings.cme.getDoc().getValue();
 		_resizeCodeMirror();
 		if(_cmSettings.autoIndent) { _indentCode(true); }
 		_cmSettings.cme.on("change",function(){ _updateUndoRedo(); });
 		_cmSettings.cme.getDoc().clearHistory();
 		_updateUndoRedo();
+	};
+
+	this.cancel = function() {
+		tinyMCEPopup.editor.setContent(initial_content, {source_view : true});
+		tinyMCEPopup.close();
 	};
 
 	this.resizeInputs = function() {
@@ -75,6 +82,7 @@ function ImprovedCodeEditor() {
 		var ins = (elm.checked) ? "on" : "off";
 		var out = (elm.checked) ? "off" : "on";
 		_switchClasses($(elm).parent(),ins,out);
+		_giveFocus();
 	};
 
 	this.toggleIndent = function(elm) {
@@ -82,6 +90,7 @@ function ImprovedCodeEditor() {
 		var ins = (elm.checked) ? "on" : "off";
 		var out = (elm.checked) ? "off" : "on";
 		_switchClasses($(elm).parent(),ins,out);
+		_giveFocus();
 	};
 
 	this.toggleLineNumbers = function(elm) {
@@ -89,6 +98,7 @@ function ImprovedCodeEditor() {
 		var ins = (elm.checked) ? "on" : "off";
 		var out = (elm.checked) ? "off" : "on";
 		_switchClasses($(elm).parent(),ins,out);
+		_giveFocus();
 	};
 
 	this.toggleWordWrap = function(elm) {
@@ -96,16 +106,19 @@ function ImprovedCodeEditor() {
 		var ins = (elm.checked) ? "on" : "off";
 		var out = (elm.checked) ? "off" : "on";
 		_switchClasses($(elm).parent(),ins,out);
+		_giveFocus();
 	};
 
 	/* Undo - Redo */
 	this.redo = function() {
 		_cmSettings.cme.getDoc().redo();
-	}
+		_giveFocus();
+	};
 
 	this.undo = function() {
 		_cmSettings.cme.getDoc().undo();
-	}
+		_giveFocus();
+	};
 
 
 	////////////////////////////////////////////
@@ -119,6 +132,11 @@ function ImprovedCodeEditor() {
 		http.open('HEAD', url, false);
 		http.send();
 		return http.status==200;
+	};
+
+	function _giveFocus() {
+		_cmSettings.cme.refresh();
+		_cmSettings.cme.focus();
 	};
 
 	function _indentCode(on) {
@@ -153,6 +171,7 @@ function ImprovedCodeEditor() {
 									,mode: "application/xml"
 								}
 							);
+		document.getElementById("htmlSource").value = myCodeMirror.getDoc().getValue();
 		return myCodeMirror;
 	};
 
@@ -169,7 +188,7 @@ function ImprovedCodeEditor() {
 
 	function _resizeCodeMirror() {
 		var vp = tinyMCEPopup.dom.getViewPort(window);
-		_cmSettings.cme.setSize("100%",vp.h - 115);
+		_cmSettings.cme.setSize("100%",vp.h - 100);
 	};
 
 	function _sanitizeTheme(theme, themeUrl) {
@@ -217,7 +236,7 @@ function ImprovedCodeEditor() {
 		} else {
 			_switchClasses(redoButton, 'on', 'off');
 		}
-	}
+	};
 }
 
 var ice = new ImprovedCodeEditor();
