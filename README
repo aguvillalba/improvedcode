@@ -64,6 +64,10 @@ This plug-in includes the javascript library CodeMirror (codemirror.net) version
 CHANGE LOG
 =================
 
+Version 1.2
+	-	Added new feature. Undo/redo with 40 levels of history
+	-	Added new toolbar with buttons for each action
+
 Version 1.1
 
 	-	Added new feature. Set ImprovedCode cursor to same position as cursor was in TinyMCE

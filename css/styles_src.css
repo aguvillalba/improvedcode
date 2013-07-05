@@ -1,0 +1,66 @@
+body {
+	overflow:hidden;
+}
+
+#optionsBar {
+	border: 1px solid #AAA;
+	height: 42px;
+	padding: 5px;
+}
+
+form { clear: both; }
+
+#htmlSource {
+	font-family: 'Courier New', Courier,monospace; font-size: 12px;
+	height: 100%;
+	width: 100%;
+}
+
+.toolbar_btn {
+	background: url('../img/toolbar.png') no-repeat top left, -moz-linear-gradient(center top , #EDEDED 5%, #DFDFDF 100%);
+	border: 1px solid #CCC;
+	border-radius: 5px 5px 5px 5px;
+	-moz-border-radius: 5px 5px 5px 5px;
+	-webkit-border-radius: 5px 5px 5px 5px;
+	color: #777777 !important;
+	display: inline-block;
+	float: left;
+	height: 35px;
+	list-style: none;
+	margin-right: 2px;
+	outline: none;
+	padding: 2px;
+	text-decoration: none !important;
+	width: 65px;
+}
+
+.toolbar_btn:hover {color: #777; text-decoration: none;}
+.toolbar_btn input {display:none;}
+.toolbar_btn label {display: block; height: 35px; padding-top: 24px; text-align:center; width: 65px; }
+.toolbar_btn span {float:left; margin-top:24px; text-align:center; width:65px;}
+
+.toolbar_btn label, .toolbar_btn span {font-size:8px;}
+
+.toolbar_btn.on, label { cursor: pointer; }
+.toolbar_btn.on { -moz-box-shadow: 0 0 0 1px #DDD; -webkit-box-shadow: 0 0 0 1px #DDD; box-shadow: 0 1px 1px 0px #888; }
+.toolbar_btn.off { cursor: default; -moz-box-shadow: 0 1px 0 0 #FFFFFF inset; -webkit-box-shadow: 0 1px 0 0 #FFFFFF inset; box-shadow: 0 1px 0 0 #FFFFFF inset;}
+
+.undo_btn.on { background-position: -644px 1px; }
+.undo_btn.off {background-position: -570px 1px; }
+
+.redo_btn { margin-right: 10px; }
+.redo_btn.on{ background-position: -496px 1px;}
+.redo_btn.off{ background-position: -422px 1px;}
+
+.highlight_btn.on{ background-position: -52px 1px;}
+.highlight_btn.off{ background-position: 22px 1px;}
+
+.linenumbers_btn.on{ background-position: -348px 1px;}
+.linenumbers_btn.off{ background-position: -274px 1px;}
+
+.indented_btn.on{ background-position: -200px 1px; }
+.indented_btn.off{ background-position: -126px 1px; }
+
+.wraped_btn.on{ background-position: -792px 1px; }
+.wraped_btn.off{ background-position: -718px 1px; }
+

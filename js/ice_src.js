@@ -39,7 +39,9 @@ function ImprovedCodeEditor() {
 		_cmSettings.cme = _initCodeMirror(_cmSettings);
 		_resizeCodeMirror();
 		if(_cmSettings.autoIndent) { _indentCode(true); }
-		
+		_cmSettings.cme.on("change",function(){ _updateUndoRedo(); });
+		_cmSettings.cme.getDoc().clearHistory();
+		_updateUndoRedo();
 	};
 
 	this.resizeInputs = function() {
@@ -70,19 +72,41 @@ function ImprovedCodeEditor() {
 		} else {
 			_cmSettings.cme.setOption("theme","none");
 		}
+		var ins = (elm.checked) ? "on" : "off";
+		var out = (elm.checked) ? "off" : "on";
+		_switchClasses($(elm).parent(),ins,out);
 	};
 
 	this.toggleIndent = function(elm) {
 		_indentCode(elm.checked);
+		var ins = (elm.checked) ? "on" : "off";
+		var out = (elm.checked) ? "off" : "on";
+		_switchClasses($(elm).parent(),ins,out);
 	};
 
 	this.toggleLineNumbers = function(elm) {
 		_cmSettings.cme.setOption("lineNumbers",elm.checked);
+		var ins = (elm.checked) ? "on" : "off";
+		var out = (elm.checked) ? "off" : "on";
+		_switchClasses($(elm).parent(),ins,out);
 	};
 
 	this.toggleWordWrap = function(elm) {
 		_cmSettings.cme.setOption("lineWrapping",elm.checked);
+		var ins = (elm.checked) ? "on" : "off";
+		var out = (elm.checked) ? "off" : "on";
+		_switchClasses($(elm).parent(),ins,out);
 	};
+
+	/* Undo - Redo */
+	this.redo = function() {
+		_cmSettings.cme.getDoc().redo();
+	}
+
+	this.undo = function() {
+		_cmSettings.cme.getDoc().undo();
+	}
+
 
 	////////////////////////////////////////////
 	/**
@@ -145,7 +169,7 @@ function ImprovedCodeEditor() {
 
 	function _resizeCodeMirror() {
 		var vp = tinyMCEPopup.dom.getViewPort(window);
-		_cmSettings.cme.setSize("100%",vp.h - 80);
+		_cmSettings.cme.setSize("100%",vp.h - 115);
 	};
 
 	function _sanitizeTheme(theme, themeUrl) {
@@ -172,6 +196,28 @@ function ImprovedCodeEditor() {
 			n.value = v;
 		}
 	};
+
+	function _switchClasses(elm, ins, out) {
+		elm.removeClass(out);
+		elm.addClass(ins);
+	};
+
+	function _updateUndoRedo() {
+		var history = _cmSettings.cme.getDoc().historySize();
+		var undoButton = $("#undo_btn");
+		if(history.undo < 1) {
+			_switchClasses(undoButton, 'off', 'on');
+		} else {
+			_switchClasses(undoButton, 'on', 'off');
+		}
+
+		var redoButton = $("#redo_btn");
+		if(history.redo < 1) {
+			_switchClasses(redoButton, 'off', 'on');
+		} else {
+			_switchClasses(redoButton, 'on', 'off');
+		}
+	}
 }
 
 var ice = new ImprovedCodeEditor();
