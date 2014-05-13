@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Full featured example - TinyMCE 4</title>
+    <meta charset="utf-8">
+
+    <script type="text/javascript" src="jscripts/tinymce4/tinymce.min.js"></script>
+    <script type="text/javascript" src="jscripts/tinymce4/plugins/improvedcode/plugin.min.js"></script>
+    <script type="text/javascript">
+        tinymce.init({
+            selector: "textarea",
+            plugins: [
+                "improvedcode,advlist autolink lists link image charmap print preview anchor",
+                "searchreplace visualblocks code fullscreen"
+            ],
+            //external_plugins: { "improvedcode" : "/jscripts/tinymce4/plugins/improvedcode/plugin.min.js" },
+            toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+            toolbar2: "improvedcode",
+
+            //HTML ImprovedCode
+            improvedcode_options : {
+                height: 580
+                ,indentUnit: 4
+                ,tabSize: 4
+                ,lineNumbers: true
+                ,autoIndent: true
+                ,theme: 'monokai'
+            }
+        });
+    </script>
+
+</head>
+<body role="application">
+
+<form method="post" action="http://tinymce.moxiecode.com/dump.php?example=true">
+    <div>
+        <h3>Full featured example</h3>
+
+        <p>
+            This page shows all available buttons and plugins that are included in the TinyMCE core package.
+            There are more examples on how to use TinyMCE in the <a href="http://tinymce.moxiecode.com/examples/">Wiki</a>.
+        </p>
+
+        <!-- Gets replaced with TinyMCE, remember HTML in a textarea should be encoded -->
+        <div>
+            <textarea id="elm1" name="elm1" rows="15" cols="80" style="width: 80%">
+                &lt;p&gt;
+                This is some example text that you can edit inside the &lt;strong&gt;TinyMCE editor&lt;/strong&gt;.
+                &lt;/p&gt;
+                &lt;p&gt;
+                Nam nisi elit, cursus in rhoncus sit amet, pulvinar laoreet leo. Nam sed lectus quam, ut sagittis tellus. Quisque dignissim mauris a augue rutrum tempor. Donec vitae purus nec massa vestibulum ornare sit amet id tellus. Nunc quam mauris, fermentum nec lacinia eget, sollicitudin nec ante. Aliquam molestie volutpat dapibus. Nunc interdum viverra sodales. Morbi laoreet pulvinar gravida. Quisque ut turpis sagittis nunc accumsan vehicula. Duis elementum congue ultrices. Cras faucibus feugiat arcu quis lacinia. In hac habitasse platea dictumst. Pellentesque fermentum magna sit amet tellus varius ullamcorper. Vestibulum at urna augue, eget varius neque. Fusce facilisis venenatis dapibus. Integer non sem at arcu euismod tempor nec sed nisl. Morbi ultricies, mauris ut ultricies adipiscing, felis odio condimentum massa, et luctus est nunc nec eros.
+                &lt;/p&gt;
+                <table border="0">
+                    <caption>Table Caption</caption>
+                    <thead>
+                    <tr>
+                        <td>header 1</td>
+                        <td>header 2&nbsp;</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>cell 1</td>
+                        <td>cell 2</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </textarea>
+        </div>
+
+        <!-- Some integration calls -->
+        <a href="javascript:;" onclick="tinyMCE.get('elm1').show();return false;">[Show]</a>
+        <a href="javascript:;" onclick="tinyMCE.get('elm1').hide();return false;">[Hide]</a>
+        <a href="javascript:;" onclick="tinyMCE.get('elm1').execCommand('Bold');return false;">[Bold]</a>
+        <a href="javascript:;" onclick="alert(tinyMCE.get('elm1').getContent());return false;">[Get contents]</a>
+        <a href="javascript:;" onclick="alert(tinyMCE.get('elm1').selection.getContent());return false;">[Get selected HTML]</a>
+        <a href="javascript:;" onclick="alert(tinyMCE.get('elm1').selection.getContent({format : 'text'}));return false;">[Get selected text]</a>
+        <a href="javascript:;" onclick="alert(tinyMCE.get('elm1').selection.getNode().nodeName);return false;">[Get selected element]</a>
+        <a href="javascript:;" onclick="tinyMCE.execCommand('mceInsertContent',false,'<b>Hello world!!</b>');return false;">[Insert HTML]</a>
+        <a href="javascript:;" onclick="tinyMCE.execCommand('mceReplaceContent',false,'<b>{$selection}</b>');return false;">[Replace selection]</a>
+
+        <br />
+        <input type="submit" name="save" value="Submit" />
+        <input type="reset" name="reset" value="Reset" />
+    </div>
+</form>
+
+<script type="text/javascript">
+    if (document.location.protocol == 'file:') {
+        alert("The examples might not work properly on the local file system due to security settings in your browser. Please use a real webserver.");
+    }
+</script>
+</body>
+</html>
