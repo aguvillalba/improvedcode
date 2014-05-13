@@ -1,7 +1,7 @@
 1. Copy the folder "demo" to your public web directory.
 
-To test for TinyMCE 3.x:
+To test TinyMCE 3.x:
     Open your browser and access to the URL: http://localhost/demo/index.html
 
-To test for TinyMCE 4.x:
+To test TinyMCE 4.x:
     Open your browser and access to the URL: http://localhost/demo/index4.html
