@@ -12,15 +12,30 @@ date	   2013-04-18
 
 Insert code into TinyMCE
 
-Tested with: TinyMCE 3.4
-Firefox 3.6.6 => FireFox 20, Opera 11, Safari 4, Safari 5, Chrome 25, IE 7, IE 8, IE 9
+Tested with:
+    TinyMCE 3.4+
+        Firefox 3.6.6+ => FireFox 20+, Opera 11, Safari 4, Safari 5, Chrome 25+, IE 7, IE 8, IE 9
+
+    TinyMCE 4.x
+        Firefox 20+, Safari 6+, Chrome 25+
 
 
 INSTALL
 ============
-* Extract the zip to the TinyMCE plug-ins folder.
-* Add improvedcode to the plug-ins configuration.
-* Add improvedcode to the theme_advanced_buttons_n configuration.
+* Extract the zip content
+
+* To use with TinyMCE 3.x:
+    - Create a folder called "improvedcode" inside the "plugins" folder in your TinyMCE installation
+    - Copy the content of the folder tinymce3 into the folder "improvedcode" created in the previous step
+    - Add the improvedcode plugin to the TinyMCE initialization
+    - Add improvedcode to the theme_advanced_buttons_n configuration.
+
+* To use with TinyMCE 4.x:
+    - Create a folder called "improvedcode" inside the "plugins" folder in your TinyMCE installation
+    - Copy the content of the folder tinymce4 into the folder "improvedcode" created in the previous step
+    - Include the file plugins/improvedcode/plugin.min.js in your HTML code right after the file tinymce.min.js
+    - Add the improvedcode plugin to the TinyMCE initialization
+    - Add the improvedcode plugin to the toolbar configuration
 
 
 CONFIGURATION
@@ -63,6 +78,10 @@ This plug-in includes the javascript library CodeMirror (codemirror.net) version
 
 CHANGE LOG
 =================
+
+2014-05-13 Version 1.2.1
+
+- Added support for TinyMCE 4.x
 
 2013-07-05	Version 1.2.1
 - Bug fix when setting the cursor to same position as cursos in TinyMCE
