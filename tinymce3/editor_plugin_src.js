@@ -102,7 +102,7 @@
                                 author : 	'Agustin Villalba',
                                 authorurl : 'http://www.agustinvillalba.com',
                                 infourl : 	'http://www.agustinvillalba.com/portfolio.html',
-                                version : 	'1.2.1'
+                                version : 	'1.2.2'
                         };
                 }
         });
