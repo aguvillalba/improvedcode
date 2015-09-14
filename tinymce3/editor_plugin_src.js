@@ -5,8 +5,8 @@
 * @author: 	Agustin Villalba <info@agustinvillalba.com>
 * @license 	LGPL v3
 * @name		ImprovedCode
-* @package 	TinyMCE 3.4
-* @version: 1.2.1 July 2013
+* @package 	TinyMCE 3.5.11
+* @version: 1.3.1 Sep 2015
 */
 
 (function() {
@@ -102,7 +102,7 @@
                                 author : 	'Agustin Villalba',
                                 authorurl : 'http://www.agustinvillalba.com',
                                 infourl : 	'http://www.agustinvillalba.com/portfolio.html',
-                                version : 	'1.2.2'
+                                version : 	'1.3.1'
                         };
                 }
         });
@@ -110,5 +110,3 @@
         // Register plugin
         tinymce.PluginManager.add('improvedcode', tinymce.plugins.ImprovedCodePlugin);
 })();
-
-
